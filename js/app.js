@@ -13,7 +13,7 @@ function Animal (animalobject){
 }
     const allanimals =[];
 
-    Animal.prototype.render= function () {
+    Animal.prototype.renderimage= function () {
         $('main').append('<div class ="clone"></div>');
         let $animalContainer =$('div[class="clone"]');
         let $clonedanimal =$('#photo-template').html();
@@ -24,23 +24,46 @@ function Animal (animalobject){
         $animalContainer.find('p').text(this.description);
 
         $animalContainer.attr('class','');
+        $animalContainer.attr('data-keyword',this.keyword);
+        $animalContainer.attr('data-horns',this.horns);
 
     }
 
+
+    Animal.prototype.rendermenu= function () {
+        $('select').append('<option class ="newdrop"></option>');
+        let $menuContainer =$('option[class="newdrop"]');
+        //$animalContainer.html($);
+         console.log('in render menu');
+       
+       
+        $menuContainer.attr('value',this.keyword);
+        $menuContainer.text(this.keyword);
+        $menuContainer.attr('class','');
+    }
 
     let readJSON = function () {
         $.get('../data/page-1.json',data => {
             data.forEach(animaljson => {
                 new Animal(animaljson);
             })
-        }).then(renderallanimals)
+        }).then(renderallanimals).then(renderdropdownanimals)
     }
 
     function renderallanimals () {
         allanimals.forEach(animal => {
-            animal.render();
+            animal.renderimage();
+        })
+    }
+    function renderdropdownanimals(){
+        
+        allanimals.forEach(animal => {
+            animal.rendermenu();
         })
     }
 
+
+
     readJSON();
-    //renderallanimals();
+    //renderdropdownanimals();
+    
