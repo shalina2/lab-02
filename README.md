@@ -1,1 +1,2 @@
 # lab-02
+This repo's purpose is to host a website that allows users to view horned animals, using jQuery to load data from a JSON file and hide and show animals based on keyword data. This was initially styled with floats - we will refactor this with flexbox and CSS grid in later labs.
