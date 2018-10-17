@@ -8,6 +8,7 @@ function Animal (animalobject){
   this.description =animalobject.description;
   this.horns=animalobject.horns;
   this.keyword=animalobject.keyword;
+  this.indropdown=false;
   allanimals.push(this);
     
 }
@@ -40,6 +41,11 @@ Animal.prototype.rendermenu= function () {
   $menuContainer.attr('value',this.keyword);
   $menuContainer.text(this.keyword);
   $menuContainer.attr('class','');
+  allanimals.forEach(animal => {
+    if (animal.keyword ===this.keyword){
+        animal.indropdown=true;
+    }
+  })
 }
 
 let readJSON = function () {
@@ -58,7 +64,10 @@ function renderallanimals () {
 function renderdropdownanimals(){
         
   allanimals.forEach(animal => {
-    animal.rendermenu();
+      if(animal.indropdown===false){
+          animal.rendermenu();
+      }
+    
   })
   $('select').on('change',renderfilterdanimals)
   console.log('attempting to listen')
