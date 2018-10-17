@@ -1,8 +1,43 @@
-img {
-    max-width: 400px;
-    max-height: 400px;
-   
+*{
+    box-sizing: border-box;
 }
-section{
+h1{
+    font-family: 'Fredoka One', cursive;
+    font-size: 48px;
+    text-align: center;
+}
+select{
+    margin: 0px auto;
+}
+h2{
+    font-family: 'Charmonman', cursive;
+    font-size: 36px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+p{  
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 24px;
+    text-align: center;
+}
+img {
+    margin: auto;
+    max-width: 380px;
+    max-height: 380px;
+}
+div{
+    border: 1px solid #090909;
+    clear: right;
     float: left;
+    margin: 10px;
+    width: 400px;
+    height: 500px;
+    padding: 5px;
+}
+main{
+    overflow: hidden;
+}
+footer{
+    text-align: center;
 }
