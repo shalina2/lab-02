@@ -3,14 +3,13 @@
 //constructor
 
 function Animal (animalobject){
-  this.url =animalobject.image_url;
+  this.image_url =animalobject.image_url;
   this.title =animalobject.title;
   this.description =animalobject.description;
   this.horns=animalobject.horns;
   this.keyword=animalobject.keyword;
   this.indropdown=false;
-  allanimals.push(this);
-    
+  allanimals.push(this);   
 }
 const allanimals =[];
 
@@ -19,9 +18,9 @@ Animal.prototype.renderimage= function () {
   let $animalContainer =$('div[class="clone"]');
   let $clonedanimal =$('#photo-template').html();
   $animalContainer.html($clonedanimal);
-   console.log($animalContainer);
+  console.log($animalContainer);
   $animalContainer.find('h2').text(this.title);
-  $animalContainer.find('img').attr('src',this.url);
+  $animalContainer.find('img').attr('src',this.image_url);
   $animalContainer.find('p').text(this.description);
 
   $animalContainer.attr('class','');
@@ -100,11 +99,11 @@ function renderAnyHandlebars(sourceId,data,logTarget) {
   $(logTarget).append(newHtml);
 }
     
-// function renderAnyAnimals () {
-//   allanimals.forEach(animal => {
-//     renderAnyHandlebars ('#animal-handlebars',animal,'#animalcontainer')
-//   })
-// }
+function renderAnyAnimals () {
+  allanimals.forEach(animal => {
+    renderAnyHandlebars ('#animal-handlebars',animal,'main')
+  })
+}
 
 
 //renderdropdownanimals();
@@ -118,7 +117,7 @@ let readJSON = function () {
     data.forEach(animaljson => {
       new Animal(animaljson);
     })
-  }).then(renderallanimals).then(renderdropdownanimals)
+  }).then(renderallanimals).then(renderdropdownanimals)//.then(renderAnyAnimals)
 }
 
 readJSON();
