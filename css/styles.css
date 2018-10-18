@@ -1,4 +1,52 @@
 *{
+    box-sizing: border-box; }
+
+html,body {
+    height: 100%;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+}
+/* body > header, body {
+    height:70px;
+    line-height: 70px;
+} */
+
+main {
+    flex:1;
+
+}
+/* .deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width:300px
+} */
+
+.card.links {
+    margin-top: 1em;
+    order:4;
+    display: flex;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* }
     box-sizing: border-box;
 }
 h1{
@@ -40,4 +88,4 @@ main{
 }
 footer{
     text-align: center;
-}
+} */
