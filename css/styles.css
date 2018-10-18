@@ -47,6 +47,8 @@ main {
 
 
 /* }
+    box-sizing: border-box;
+}
 h1{
     font-family: 'Fredoka One', cursive;
     font-size: 48px;
