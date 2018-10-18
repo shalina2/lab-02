@@ -1,8 +1,89 @@
+*{
+    box-sizing: border-box; }
+
+html,body {
+    height: 100%;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+}
+/* body > header, body {
+    height:70px;
+    line-height: 70px;
+} */
+
+main {
+    flex:1;
+
+}
+/* .deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width:300px
+} */
+
+.card.links {
+    margin-top: 1em;
+    order:4;
+    display: flex;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* }
+h1{
+    font-family: 'Fredoka One', cursive;
+    font-size: 48px;
+    text-align: center;
+}
+select{
+    margin: 0px auto;
+}
+h2{
+    font-family: 'Charmonman', cursive;
+    font-size: 36px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+p{  
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 24px;
+    text-align: center;
+}
 img {
-    max-width: 400px;
-    max-height: 400px;
-   
+    margin: auto;
+    max-width: 380px;
+    max-height: 380px;
 }
-section{
+div{
+    border: 1px solid #090909;
+    clear: right;
     float: left;
+    margin: 10px;
+    width: 400px;
+    height: 500px;
+    padding: 5px;
 }
+main{
+    overflow: hidden;
+}
+footer{
+    text-align: center;
+} */
