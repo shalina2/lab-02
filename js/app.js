@@ -49,7 +49,7 @@ Animal.prototype.rendermenu= function () {
 }
 
 let readJSON = function () {
-  $.get('../data/page-1.json',data => {
+  $.get('./data/page-1.json',data => {
     data.forEach(animaljson => {
       new Animal(animaljson);
     })
@@ -90,8 +90,27 @@ function renderfilterdanimals() {
    
   })
 
+
 }
+  Animal.prototype.renderHandlebars = function () {
+    let animalSource = $('#animal-handlebars').html();
+    let animalTemplate = Handlebars.compile(animalSource);
+    let animalHtml = animalTemplate(this);
+
+    $('body').append(dogHtml);
+  }
+
+  function renderAnyHandlebars(sourceId,data,logTarget) {
+    let template = Handlebars.compile($(sourceId).html());
+    let newHtml = template(data);
+    $(logTarget).append(newHtml);
+  }
     
+  function render allanimals () {
+    allanimals.forEach(animal => {
+      renderAnyHandlebars ('#animal-handlebars',dog,'#animalcontainer')
+    })
+  }
 
 readJSON();
 //renderdropdownanimals();
