@@ -19,7 +19,7 @@ Animal.prototype.renderimage= function () {
   let $animalContainer =$('div[class="clone"]');
   let $clonedanimal =$('#photo-template').html();
   $animalContainer.html($clonedanimal);
-  // console.log($animalContainer);
+   console.log($animalContainer);
   $animalContainer.find('h2').text(this.title);
   $animalContainer.find('img').attr('src',this.url);
   $animalContainer.find('p').text(this.description);
@@ -43,30 +43,25 @@ Animal.prototype.rendermenu= function () {
   $menuContainer.attr('class','');
   allanimals.forEach(animal => {
     if (animal.keyword ===this.keyword){
-        animal.indropdown=true;
+      animal.indropdown=true;
     }
   })
 }
 
-let readJSON = function () {
-  $.get('./data/page-1.json',data => {
-    data.forEach(animaljson => {
-      new Animal(animaljson);
-    })
-  }).then(renderallanimals).then(renderdropdownanimals)
-}
 
 function renderallanimals () {
+  console.log('hello!!')
+
   allanimals.forEach(animal => {
-    animal.renderimage();
+    renderAnyHandlebars('#animal-Handlebars',animal,'main');
   })
 }
 function renderdropdownanimals(){
         
   allanimals.forEach(animal => {
-      if(animal.indropdown===false){
-          animal.rendermenu();
-      }
+    if(animal.indropdown===false){
+      animal.rendermenu();
+    }
     
   })
   $('select').on('change',renderfilterdanimals)
@@ -82,40 +77,48 @@ function renderfilterdanimals() {
     console.log($selectcontainer)
   })
   allanimals.forEach(animal => {
-      if(animal.keyword===this.value){
-        let $selectcontainer = $(`div[data-keyword=${animal.keyword}]`);  
-        $selectcontainer.attr('hidden',false)
-      }
-    
-   
+    if(animal.keyword===this.value){
+      let $selectcontainer = $(`div[data-keyword=${animal.keyword}]`);  
+      $selectcontainer.attr('hidden',false)
+    }
   })
 
 
 }
-  Animal.prototype.renderHandlebars = function () {
-    let animalSource = $('#animal-handlebars').html();
-    let animalTemplate = Handlebars.compile(animalSource);
-    let animalHtml = animalTemplate(this);
+Animal.prototype.renderHandlebars = function () {
+  let animalSource = $('#animal-handlebars').html();
+  let animalTemplate = Handlebars.compile(animalSource);
+  let animalHtml = animalTemplate(this);
 
-    $('body').append(dogHtml);
-  }
+  $('body').append(animalHtml);
+}
 
-  function renderAnyHandlebars(sourceId,data,logTarget) {
-    let template = Handlebars.compile($(sourceId).html());
-    let newHtml = template(data);
-    $(logTarget).append(newHtml);
-  }
+function renderAnyHandlebars(sourceId,data,logTarget) {
+  let template = Handlebars.compile($(sourceId).html());
+  let newHtml = template(data);
+  console.log($(logTarget));
+  $(logTarget).append(newHtml);
+}
     
-  function render allanimals () {
-    allanimals.forEach(animal => {
-      renderAnyHandlebars ('#animal-handlebars',dog,'#animalcontainer')
-    })
-  }
+// function renderAnyAnimals () {
+//   allanimals.forEach(animal => {
+//     renderAnyHandlebars ('#animal-handlebars',animal,'#animalcontainer')
+//   })
+// }
 
-readJSON();
+
 //renderdropdownanimals();
 function logTarget(){
   console.log('this',this.value);
   console.log('$(this)', $(this.value));
 }
-    
+let readJSON = function () {
+  $.get('./data/page-1.json',data => {
+    console.log('data')
+    data.forEach(animaljson => {
+      new Animal(animaljson);
+    })
+  }).then(renderallanimals).then(renderdropdownanimals)
+}
+
+readJSON();
