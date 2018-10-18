@@ -36,7 +36,6 @@ Animal.prototype.rendermenu= function () {
   //$animalContainer.html($);
   console.log('in render menu');
        
-       
   $menuContainer.attr('value',this.keyword);
   $menuContainer.text(this.keyword);
   $menuContainer.attr('class','');
@@ -49,8 +48,6 @@ Animal.prototype.rendermenu= function () {
 
 
 function renderallanimals () {
-  console.log('hello!!')
-
   allanimals.forEach(animal => {
     renderAnyHandlebars('#animal-Handlebars',animal,'main');
   })
@@ -64,20 +61,21 @@ function renderdropdownanimals(){
     
   })
   $('select').on('change',renderfilterdanimals)
-  console.log('attempting to listen')
+  // console.log('attempting to listen')
 }
 
 function renderfilterdanimals() {
   //let targetvalue =this.value;
   allanimals.forEach(animal => {
-    let $selectcontainer = $(`div[data-keyword=${animal.keyword}]`);
-    
+    let $selectcontainer = $(`section[data-keyword=${animal.keyword}]`);
     $selectcontainer.attr('hidden',true)
+    console.log('hello world')
+
     console.log($selectcontainer)
   })
   allanimals.forEach(animal => {
     if(animal.keyword===this.value){
-      let $selectcontainer = $(`div[data-keyword=${animal.keyword}]`);  
+      let $selectcontainer = $(`section[data-keyword=${animal.keyword}]`);  
       $selectcontainer.attr('hidden',false)
     }
   })
@@ -106,18 +104,19 @@ function renderAnyAnimals () {
 }
 
 
-//renderdropdownanimals();
-function logTarget(){
-  console.log('this',this.value);
-  console.log('$(this)', $(this.value));
-}
+// renderdropdownanimals();
+
 let readJSON = function () {
   $.get('./data/page-1.json',data => {
     console.log('data')
     data.forEach(animaljson => {
       new Animal(animaljson);
     })
-  }).then(renderallanimals).then(renderdropdownanimals)//.then(renderAnyAnimals)
+  }).then(renderallanimals).then(renderdropdownanimals).then(allanimals)
 }
 
 readJSON();
+function logTarget(){
+  console.log('this',this.value);
+  console.log('$(this)', $(this.value));
+}
